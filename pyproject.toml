@@ -1,0 +1,18 @@
+[project]
+name = "ai-system-for-search-by-oem"
+version = "0.1.0"
+description = "system for search detail by OEM number, with graph interface"
+authors = [
+    {name = "a.dolgov",email = "dolgov_am@mail.ru"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard] (>=0.115.8,<0.116.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
