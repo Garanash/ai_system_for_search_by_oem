@@ -1,9 +1,11 @@
 from pydantic import BaseModel, PostgresDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+
 class RunConfig(BaseModel):
-    host: str = '0.0.0.0'
-    port: int = 80
+    host: str = '127.0.0.1'
+    port: int = 8000
+
 
 class ApiV1Prefix(BaseModel):
     prefix: str = '/v1'
@@ -21,6 +23,7 @@ class ApiPrefix(BaseModel):
     prefix: str = '/api'
     v1: ApiV1Prefix = ApiV1Prefix()
 
+
 class DatabaseConfig(BaseModel):
     url: PostgresDsn
     echo: bool = False
@@ -37,6 +40,9 @@ class DatabaseConfig(BaseModel):
     }
 
 
+class Token(BaseModel):
+    token:str
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -47,3 +53,11 @@ class Settings(BaseSettings):
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
     db: DatabaseConfig
+    gpt: Token
+
+
+settings = Settings()
+
+# если есть желание проверить данные из .env файла
+# print(settings.db.url)
+# print(settings.gpt.token)
