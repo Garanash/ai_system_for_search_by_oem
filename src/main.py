@@ -14,8 +14,11 @@ def start(request: Request):
 
 @main_app.get('/ai_search')
 def search_ai(request: Request):
-    return templates.TemplateResponse('search.html', {'request': request})
+    return templates.TemplateResponse('search.html', {'request': request, "userdata": None})
 
+@main_app.get('/ai_finded')
+def finded_ai(request: Request):
+    return templates.TemplateResponse('finded.html', {'request': request, "userdata": None})
 
 if __name__ == "__main__":
     uvicorn.run("main:main_app")
